@@ -1,10 +1,7 @@
 /*
- * Includes Thymeleaf fragments client-side for prototyping purposes.
- *
- * Requires jQuery.
- *
- * TODO: Support nested includes
- * TODO: Make prefix/suffix externally configurable
+ * thymeleaf-fragment.js 0.1.0
+ * 
+ * See: https://github.com/BlackPepperSoftware/thymeleaf-fragment.js
  */
 
 // Prefix that gets prepended to view names when building a URL
