@@ -12,8 +12,10 @@ Getting started
 
 Include jQuery and the script within your template:
 
-	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-	<script src="http://blackpeppersoftware.github.io/thymeleaf-fragment.js/thymeleaf-fragment.js"
-		defer="defer" th:if="false"></script>
+```html
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="http://blackpeppersoftware.github.io/thymeleaf-fragment.js/thymeleaf-fragment.js"
+	defer="defer" th:if="false"></script>
+```
 
 The `th:if` attribute includes the script when prototyping but not at runtime. `defer` will execute the script once the document has finished loading. If you include other scripts that rely on included fragments then ensure that they are included after `thymeleaf-fragment.js`.
