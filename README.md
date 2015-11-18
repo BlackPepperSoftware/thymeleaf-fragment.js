@@ -1,7 +1,7 @@
 thymeleaf-fragment.js
 =====================
 
-Script to process [Thymeleaf](http://www.thymeleaf.org/) fragments in the browser.
+Process [Thymeleaf](http://www.thymeleaf.org/) fragments in the browser.
 
 Thymeleaf promotes the use of natural templates that can be viewed in the browser as static prototypes. This works well for the majority of Thymeleaf attributes but falls down when using [template fragments](http://www.thymeleaf.org/doc/tutorials/2.1/usingthymeleaf.html#template-layout). Third-party tools such as [Thymol](http://www.thymoljs.org/) do solve this problem but they also process the entire template which is often a hindrance.
 
