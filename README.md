@@ -55,6 +55,9 @@ And then append its content to the `<div>` to produce:
 </html>
 ```
 
-To replace the `<div>` with the fragment instead use the Thymeleaf `th:replace` attribute.
+To replace the `<div>` with the fragment instead use the Thymeleaf `th:replace` attribute. See the [Thymeleaf documentation](http://www.thymeleaf.org/doc/tutorials/2.1/usingthymeleaf.html#template-layout) for more details about the syntax.
 
-See the [demo](http://blackpeppersoftware.github.io/thymeleaf-fragment.js/demo/template.html) for a live example.
+Demo
+----
+
+View the [demo](http://blackpeppersoftware.github.io/thymeleaf-fragment.js/demo/template.html) to see a live example of including and replacing fragments.
