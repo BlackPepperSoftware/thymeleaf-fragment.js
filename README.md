@@ -62,6 +62,15 @@ Demo
 
 View the [demo](http://blackpeppersoftware.github.io/thymeleaf-fragment.js/demo/template.html) to see a live example of including and replacing fragments.
 
+Browser restrictions
+--------------------
+
+When prototyping templates locally fragments are loaded from the local file system. Browsers will typically disallow this since cross origin requests are denied for the `file:` protocol. This security constraint should be relaxed to enable fragments. For example, when using Chrome relaunch the browser using:
+
+```
+google-chrome --allow-file-access-from-files
+```
+
 Resolving templates
 -------------------
 
