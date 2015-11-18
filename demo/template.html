@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script src="http://blackpeppersoftware.github.io/thymeleaf-fragment.js/thymeleaf-fragment-0.1.0.js" defer="defer" th:if="false"></script>
+	</head>
+    <body>
+		<h1>thymeleaf-fragment.js demo</h1>
+		<h2>th:include</h2>
+		<div th:include="fragments::hello"></div>
+		<h2>th:replace</h2>
+		<div th:replace="fragments::world"></div>
+	</body>
+</html>
