@@ -61,3 +61,13 @@ Demo
 ----
 
 View the [demo](http://blackpeppersoftware.github.io/thymeleaf-fragment.js/demo/template.html) to see a live example of including and replacing fragments.
+
+Resolving templates
+-------------------
+
+On the server-side Thymeleaf uses the [ITemplateResolver](http://www.thymeleaf.org/apidocs/thymeleaf/2.1.4.RELEASE/org/thymeleaf/templateresolver/ITemplateResolver.html) interface to resolve template names into actual templates. For the client-side `thymeleaf-fragment.js` takes the following approach:
+
+1. Prepend the template prefix (nothing by default) and append the template suffix (`.html` by default) to the template name
+2. Resolve the resultant relative URL against the document's base URL to obtain an absolute URL
+
+For example, consider how a template `file:///tmp/template.html` that includes the fragment `myfragments::helloworld` is resolved: firstly, the fragment's template name `myfragments` is converted into the relative URL `myfragments.html`; then it is resolved against the template's base URL `file:///tmp/template.html` to obtain `file:///tmp/myfragments.html`.
