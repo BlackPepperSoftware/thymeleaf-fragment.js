@@ -71,3 +71,28 @@ On the server-side Thymeleaf uses the [ITemplateResolver](http://www.thymeleaf.o
 2. Resolve the resultant relative URL against the document's base URL to obtain an absolute URL
 
 For example, consider how a template `file:///tmp/template.html` that includes the fragment `myfragments::helloworld` is resolved: firstly, the fragment's template name `myfragments` is converted into the relative URL `myfragments.html`; then it is resolved against the template's base URL `file:///tmp/template.html` to obtain `file:///tmp/myfragments.html`.
+
+When templates are organised in a hierarchy use the `<base>` HTML element to define the base URL for fragments. For example, given the following file structure:
+
+```
+app/
++- admin/
+|  +- widgetsView.html
++- widget/
+   +- widget.html
+```
+
+The template `widgetsView.html` can define `app/` to be the base URL for the fragment `widget.html` as follows:
+
+```html
+<html>
+	<head>
+		<base href="../" th:if="false"/>
+	</head>
+	<body>
+		<div th:include="widget/widget::widget"></div>
+	</body>
+</html>
+```
+
+Note that the `th:if` attribute ensures that the template's base URL is only set when prototyping and not at runtime.
