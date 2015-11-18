@@ -5,7 +5,7 @@
  */
 
 // Prefix that gets prepended to view names when building a URL
-var templatePrefix = "../templates/";
+var templatePrefix = "";
 
 // Suffix that gets appended to view names when building a URL
 var templateSuffix = ".html";
