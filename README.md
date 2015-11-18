@@ -65,11 +65,13 @@ View the [demo](http://blackpeppersoftware.github.io/thymeleaf-fragment.js/demo/
 Browser restrictions
 --------------------
 
-When prototyping templates locally fragments are loaded from the local file system. Browsers will typically disallow this since cross origin requests are denied for the `file:` protocol. This security constraint should be relaxed to allow fragments to be loaded. For example, when using Chrome relaunch the browser using:
+When prototyping templates locally fragments are loaded from the local file system. Browsers will typically disallow this since cross origin requests are denied for the `file:` protocol. This security constraint should be relaxed to allow fragments to be loaded correctly. For example, when using Chrome relaunch the browser using:
 
 ```
 google-chrome --allow-file-access-from-files
 ```
+
+Note that this is not required if you [preview the templates directly from an IDE such as IntelliJ IDEA](https://www.jetbrains.com/idea/help/previewing-pages-with-web-contents-in-a-browser.html). This is because the templates are loaded from IntelliJ IDEA's local HTTP server and not the local file system.
 
 Resolving templates
 -------------------
