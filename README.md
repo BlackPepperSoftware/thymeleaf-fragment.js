@@ -19,3 +19,42 @@ Include jQuery and the script within your template:
 ```
 
 The `th:if` attribute includes the script when prototyping but not at runtime. `defer` will execute the script once the document has finished loading. If you include other scripts that rely on included fragments then ensure that they are included after `thymeleaf-fragment.js`.
+
+Using fragments
+---------------
+
+Once `thymeleaf-fragment.js` has been included in your page simply use the regular Thymeleaf `th:include` attribute to include a fragment:
+
+```html
+<html>
+	<body>
+		<div th:include="myfragments::helloworld"></div>
+	</body>
+</html>
+```
+
+This will look for the template `myfragments.html` and find the named fragment `helloworld`:
+
+```html
+<html>
+	<body>
+		<p th:fragment="helloworld">Hello world!</p>
+	</body>
+</html>
+```
+
+And then append its content to the `<div>` to produce:
+
+```html
+<html>
+	<body>
+		<div th:include="myfragments::helloworld">
+			<p>Hello world!</p>
+		</div>
+	</body>
+</html>
+```
+
+To replace the `<div>` with the fragment instead use the Thymeleaf `th:replace` attribute.
+
+See the [demo](http://blackpeppersoftware.github.io/thymeleaf-fragment.js/demo/template.html) for a live example.
