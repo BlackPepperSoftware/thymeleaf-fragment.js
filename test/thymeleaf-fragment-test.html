@@ -1,17 +1,11 @@
 <!DOCTYPE html>
 
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 	<head>
-		<title>thymeleaf-fragment.js tests</title>
-		<link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-1.20.0.css"/>
 		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>		
 		<script src="../thymeleaf-fragment.js" defer="defer"></script>
-		<script src="https://code.jquery.com/qunit/qunit-1.20.0.js"></script>
-		<script src="thymeleaf-fragment-test.js"></script>
 	</head>
 	<body>
-		<div id="qunit"></div>
-		<div id="qunit-fixture"></div>
 		<div id="include" th:include="fragments::x"></div>
 	</body>
 </html>

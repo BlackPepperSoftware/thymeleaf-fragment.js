@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/live-server/live-server.js --no-browser & server_pid=$!; ./node_modules/protractor/bin/protractor conf.js; kill $server_pid"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,11 @@
   "bugs": {
     "url": "https://github.com/BlackPepperSoftware/thymeleaf-fragment.js/issues"
   },
-  "homepage": "https://github.com/BlackPepperSoftware/thymeleaf-fragment.js#readme"
+  "homepage": "https://github.com/BlackPepperSoftware/thymeleaf-fragment.js#readme",
+  "devDependencies": {
+    "chromedriver": "^2.20.0",
+    "live-server": "^0.9.0",
+    "protractor": "^3.0.0",
+    "selenium-server-standalone-jar": "^2.48.2"
+  }
 }
