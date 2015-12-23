@@ -1,0 +1,22 @@
+{
+  "name": "thymeleaf-fragment.js",
+  "version": "0.1.2",
+  "description": "Process Thymeleaf fragments in the browser.",
+  "main": "thymeleaf-fragment.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BlackPepperSoftware/thymeleaf-fragment.js.git"
+  },
+  "author": "Mark Hobson <mark.hobson@blackpepper.co.uk>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/BlackPepperSoftware/thymeleaf-fragment.js/issues"
+  },
+  "homepage": "https://github.com/BlackPepperSoftware/thymeleaf-fragment.js#readme"
+}
