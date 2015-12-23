@@ -1,5 +1,5 @@
 /*
- * thymeleaf-fragment.js 0.1.1
+ * thymeleaf-fragment.js 0.1.2
  * 
  * See: https://github.com/BlackPepperSoftware/thymeleaf-fragment.js
  */
