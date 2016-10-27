@@ -14,9 +14,12 @@ function ThymeleafFragment() {
 	this.processAttributes = function() {
 		// Hold off scripts waiting for the document to be ready
 		$.holdReady(true);
-		
+		processLevel();
+	}
+
+	var processLevel = function() {
 		var promises = [];
-		
+
 		$("[th\\:include]").each(function() {
 			var fragmentSpec = $(this).attr("th:include");
 			var fragmentUri = resolveFragmentUri(fragmentSpec);
@@ -28,12 +31,16 @@ function ThymeleafFragment() {
 			var fragmentUri = resolveFragmentUri(fragmentSpec);
 			promises.push(createLoadPromise(this, fragmentUri, true));
 		});
-		
-		// Release scripts once all fragments have been processed
+
 		$.when.apply(null, promises).done(function() {
-			$.holdReady(false);
+			if ($("[th\\:include]").length > 0 || $("[th\\:replace]").length > 0) {
+				processLevel(); // recurse if necessary
+			} else {
+				// Release scripts once all fragments have been processed recursively
+				$.holdReady(false);
+			}
 		});
-	}	
+    }
 	
 	var resolveFragmentUri = function(fragmentSpec) {
 		var tokens = fragmentSpec.split("::");
