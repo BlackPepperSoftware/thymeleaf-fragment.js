@@ -14,12 +14,13 @@ function ThymeleafFragment() {
 	this.processAttributes = function() {
 		// Hold off scripts waiting for the document to be ready
 		$.holdReady(true);
+		
 		processLevel();
 	}
 
 	var processLevel = function() {
 		var promises = [];
-
+		
 		$("[th\\:include]").each(function() {
 			var fragmentSpec = $(this).attr("th:include");
 			var fragmentUri = resolveFragmentUri(fragmentSpec);
@@ -40,7 +41,7 @@ function ThymeleafFragment() {
 				$.holdReady(false);
 			}
 		});
-    }
+	}
 	
 	var resolveFragmentUri = function(fragmentSpec) {
 		var tokens = fragmentSpec.split("::");
