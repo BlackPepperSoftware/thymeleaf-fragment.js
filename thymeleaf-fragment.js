@@ -11,14 +11,17 @@ function ThymeleafFragment() {
 	// Suffix that gets appended to view names when building a URL
 	var templateSuffix = ".html";
 
+	// Max level of recursion after which processing will stop
+	var maxLevel = 5;
+
 	this.processAttributes = function() {
 		// Hold off scripts waiting for the document to be ready
 		$.holdReady(true);
 		
-		processLevel();
+		processLevel(1);
 	}
 
-	var processLevel = function() {
+	var processLevel = function(level) {
 		var promises = [];
 		
 		$("[th\\:include]").each(function() {
@@ -34,8 +37,9 @@ function ThymeleafFragment() {
 		});
 
 		$.when.apply(null, promises).done(function() {
-			if ($("[th\\:include]").length > 0 || $("[th\\:replace]").length > 0) {
-				processLevel(); // recurse if necessary
+			var moreFragments = $("[th\\:include]").length > 0 || $("[th\\:replace]").length > 0;
+			if (moreFragments && level < maxLevel) {
+				processLevel(level + 1); // recurse if necessary
 			} else {
 				// Release scripts once all fragments have been processed recursively
 				$.holdReady(false);
@@ -50,7 +54,6 @@ function ThymeleafFragment() {
 		
 		var resourceName = resolveTemplate(templateName);
 		var fragmentSelector = "[th\\:fragment^='" + fragmentName + "']";
-
 		return resourceName + " " + fragmentSelector;
 	}
 
@@ -70,6 +73,9 @@ function ThymeleafFragment() {
 			$(element).load(url, function() {
 				if (replace) {
 					$(element).children().first().unwrap();
+				} else {
+					// remove th:include attribute to avoid processing this element again
+					$(element).removeAttr("th:include");
 				}
 				deferred.resolve();
 			});
