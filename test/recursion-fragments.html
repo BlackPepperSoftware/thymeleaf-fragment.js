@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div th:fragment="fragment1">
+            fragment1
+            <div th:include="recursion-fragments::fragment2">
+            </div>
+        </div>
+        
+        <div th:fragment="fragment2">
+            fragment2
+            <div th:include="recursion-fragments::fragment3">
+            </div>
+        </div>
+
+        <div th:fragment="fragment3">
+            fragment3
+            <div th:replace="recursion-fragments::fragment4">
+            </div>
+        </div>
+
+        <div th:fragment="fragment4">
+            fragment4
+            <div th:replace="recursion-fragments::fragment5">
+            </div>
+        </div>
+
+        <div id="f5" th:fragment="fragment5">
+            fragment5
+            <div th:replace="recursion-fragments::fragment6">
+            </div>
+        </div>
+
+        <div th:fragment="fragment6">
+            fragment6
+            <div th:replace="recursion-fragments::fragment7">
+            </div>
+        </div>
+    </body>
+</html>
