@@ -3,13 +3,13 @@ describe('thymeleaf-fragment.js', function() {
 	it('should include fragments', function() {
 		load('include.html');
 		
-		expect(browser.driver.findElement(by.id('include')).getInnerHtml()).toEqual('<p th:fragment="x">y</p>');
+		expect(browser.driver.findElement(by.id('include')).getInnerHtml()).toEqual('<div th:fragment="x">y</div>');
 	});
 
 	it('should replace fragments', function() {
 		load('replace.html');
 
-		expect(browser.driver.findElement(by.id('replace')).getInnerHtml()).toEqual('<p th:fragment="x">y</p>');
+		expect(browser.driver.findElement(by.id('replace')).getInnerHtml()).toEqual('<div th:fragment="x">y</div>');
 	});
 
 	var load = function(file) {
