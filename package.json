@@ -23,6 +23,6 @@
     "chromedriver": "^2.20.0",
     "live-server": "^0.9.0",
     "protractor": "^3.0.0",
-    "selenium-server-standalone-jar": "^2.48.2"
+    "selenium-server-standalone-jar": "2.48.2"
   }
 }
