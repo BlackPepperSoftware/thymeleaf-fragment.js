@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/BlackPepperSoftware/thymeleaf-fragment.js#readme",
   "devDependencies": {
-    "chromedriver": "^2.20.0",
+    "chromedriver": "^2.25.2",
     "live-server": "^0.9.0",
     "protractor": "^3.0.0",
     "selenium-server-standalone-jar": "2.53.1"
