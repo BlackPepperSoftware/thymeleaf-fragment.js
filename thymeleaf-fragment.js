@@ -33,7 +33,7 @@ function ThymeleafFragment() {
 		$.when.apply(null, promises).done(function() {
 			$.holdReady(false);
 		});
-	}	
+	};
 	
 	var resolveFragmentUri = function(fragmentSpec) {
 		var tokens = fragmentSpec.split("::");
@@ -44,18 +44,18 @@ function ThymeleafFragment() {
 		var fragmentSelector = "[th\\:fragment^='" + fragmentName + "']";
 
 		return resourceName + " " + fragmentSelector;
-	}
+	};
 
 	var removeFragmentParameters = function(fragmentExpression) {
 		var index = fragmentExpression.indexOf("(");
 		return (index == -1) ? fragmentExpression : fragmentExpression.substr(0, index);
-	}
+	};
 
 	var resolveTemplate = function(templateName) {
 		var link = document.createElement("a");
 		link.href = templatePrefix + templateName + templateSuffix;
 		return link.href;
-	}
+	};
 
 	var createLoadPromise = function(element, url, replace) {
 		return $.Deferred(function(deferred) {
@@ -66,7 +66,7 @@ function ThymeleafFragment() {
 				deferred.resolve();
 			});
 		}).promise();
-	}
+	};
 }
 
 new ThymeleafFragment().processAttributes();
