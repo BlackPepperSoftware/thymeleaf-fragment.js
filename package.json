@@ -22,7 +22,7 @@
   "devDependencies": {
     "chromedriver": "^2.25.2",
     "live-server": "^0.9.0",
-    "protractor": "^3.0.0",
+    "protractor": "^4.0.13",
     "selenium-server-standalone-jar": "2.53.1"
   }
 }
