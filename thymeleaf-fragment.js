@@ -16,22 +16,25 @@ function ThymeleafFragment() {
 		$.holdReady(true);
 		
 		var promises = [];
-		
-		$('[th\\:include]').each(function() {
-			var fragmentSpec = $(this).attr('th:include');
-			var fragmentUri = resolveFragmentUri(fragmentSpec);
-			promises.push(createLoadPromise(this, fragmentUri, false));
-		});
-		
-		$('[th\\:replace]').each(function() {
-			var fragmentSpec = $(this).attr('th:replace');
-			var fragmentUri = resolveFragmentUri(fragmentSpec);
-			promises.push(createLoadPromise(this, fragmentUri, true));
-		});
+		addPromises(promises);
 		
 		// Release scripts once all fragments have been processed
 		$.when.apply(null, promises).done(function() {
 			$.holdReady(false);
+		});
+	};
+
+	var addPromises = function(promises, element) {
+		$('[th\\:include]', element).each(function() {
+			var fragmentSpec = $(this).attr('th:include');
+			var fragmentUri = resolveFragmentUri(fragmentSpec);
+			promises.push(createLoadPromise(promises, this, fragmentUri, false));
+		});
+		
+		$('[th\\:replace]', element).each(function() {
+			var fragmentSpec = $(this).attr('th:replace');
+			var fragmentUri = resolveFragmentUri(fragmentSpec);
+			promises.push(createLoadPromise(promises, this, fragmentUri, true));
 		});
 	};
 	
@@ -57,12 +60,13 @@ function ThymeleafFragment() {
 		return link.href;
 	};
 
-	var createLoadPromise = function(element, url, replace) {
+	var createLoadPromise = function(promises, element, url, replace) {
 		return $.Deferred(function(deferred) {
 			$(element).load(url, function() {
 				if (replace) {
 					$(element).children().first().unwrap();
 				}
+				addPromises(promises, element);
 				deferred.resolve();
 			});
 		}).promise();

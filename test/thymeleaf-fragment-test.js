@@ -6,6 +6,18 @@ describe('thymeleaf-fragment.js', function() {
 		expect(browser.driver.findElement(by.id('include')).getInnerHtml()).toEqual('<div th:fragment="x">y</div>');
 	});
 
+	it('should include nested fragments', function() {
+		load('include-nested.html');
+
+		expect(browser.driver.findElement(by.id('include')).getInnerHtml()).toEqual(
+			'<div th:fragment="y">' +
+				'<div th:include="fragments::x">' +
+					'<div th:fragment="x">y</div>' +
+				'</div>' +
+			'</div>'
+		);
+	});
+
 	it('should replace fragments', function() {
 		load('replace.html');
 

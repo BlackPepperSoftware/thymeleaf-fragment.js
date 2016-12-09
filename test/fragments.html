@@ -3,5 +3,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<body>
 		<div th:fragment="x">y</div>
+		
+		<div th:fragment="y"><div th:include="fragments::x"></div></div>
 	</body>
 </html>
