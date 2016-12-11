@@ -39,7 +39,7 @@ function ThymeleafFragment() {
 	};
 	
 	var resolveFragmentUri = function(fragmentSpec) {
-		var tokens = fragmentSpec.split('::');
+		var tokens = fragmentSpec.trim().split(/\s*::\s*/);
 		var templateName = tokens[0];
 		var fragmentName = removeFragmentParameters(tokens[1]);
 		

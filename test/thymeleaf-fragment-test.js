@@ -17,7 +17,13 @@ describe('thymeleaf-fragment.js', function() {
 			'</div>'
 		);
 	});
-
+	
+	it('should ignore whitespace in include fragment spec', function() {
+		load('include-whitespace.html');
+		
+		expect(browser.driver.findElement(by.id('include')).getInnerHtml()).toEqual('<div th:fragment="x">y</div>');
+	});
+	
 	it('should replace fragments', function() {
 		load('replace.html');
 
@@ -32,6 +38,12 @@ describe('thymeleaf-fragment.js', function() {
 				'<div th:fragment="x">y</div>' +
 			'</div>'
 		);
+	});
+	
+	it('should ignore whitespace in replace fragment spec', function() {
+		load('replace-whitespace.html');
+		
+		expect(browser.driver.findElement(by.id('replace')).getInnerHtml()).toEqual('<div th:fragment="x">y</div>');
 	});
 
 	var load = function(file) {
