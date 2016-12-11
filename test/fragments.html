@@ -5,5 +5,7 @@
 		<div th:fragment="x">y</div>
 		
 		<div th:fragment="y"><div th:include="fragments::x"></div></div>
+
+		<div th:fragment="z"><div th:replace="fragments::x"></div></div>
 	</body>
 </html>

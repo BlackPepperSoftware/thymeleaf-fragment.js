@@ -63,10 +63,10 @@ function ThymeleafFragment() {
 	var createLoadPromise = function(promises, element, url, replace) {
 		return $.Deferred(function(deferred) {
 			$(element).load(url, function() {
+				addPromises(promises, element);
 				if (replace) {
 					$(element).children().first().unwrap();
 				}
-				addPromises(promises, element);
 				deferred.resolve();
 			});
 		}).promise();
