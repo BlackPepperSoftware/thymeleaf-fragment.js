@@ -109,3 +109,5 @@ The template `widgetsView.html` can define `app/` to be the base URL for the fra
 ```
 
 The `th:if` attribute causes the template's base URL to be set when prototyping but not at runtime.
+
+[![Build Status](https://travis-ci.org/BlackPepperSoftware/thymeleaf-fragment.js.svg?branch=master)](https://travis-ci.org/BlackPepperSoftware/thymeleaf-fragment.js)
