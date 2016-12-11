@@ -1,7 +1,7 @@
 describe('thymeleaf-fragment.js', function() {
 	
-	it('should include fragments', function() {
-		load('include.html');
+	it('should include fragments by fragment name', function() {
+		load('include-fragmentname.html');
 		
 		expect(browser.driver.findElement(by.id('include')).getInnerHtml()).toEqual(
 			'<div th:fragment="simple">x</div>'
@@ -28,8 +28,8 @@ describe('thymeleaf-fragment.js', function() {
 		);
 	});
 	
-	it('should replace fragments', function() {
-		load('replace.html');
+	it('should replace fragments by fragment name', function() {
+		load('replace-fragmentname.html');
 
 		expect(browser.driver.findElement(by.id('replace')).getInnerHtml()).toEqual(
 			'<div th:fragment="simple">x</div>'
