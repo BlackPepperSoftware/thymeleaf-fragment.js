@@ -58,13 +58,9 @@ function ThymeleafFragment() {
 		}
 		
 		// fragment name
-		var fragmentName = removeFragmentParameters(fragmentExpression);
+		var fragmentNameRegex = /([^()]*)/;
+		var fragmentName = fragmentExpression.match(fragmentNameRegex)[1];
 		return '[th\\:fragment^="' + fragmentName + '"]';
-	};
-
-	var removeFragmentParameters = function(fragmentExpression) {
-		var index = fragmentExpression.indexOf('(');
-		return (index == -1) ? fragmentExpression : fragmentExpression.substr(0, index);
 	};
 
 	var resolveTemplate = function(templateName) {
