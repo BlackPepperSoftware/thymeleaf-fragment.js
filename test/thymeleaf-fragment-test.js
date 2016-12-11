@@ -16,8 +16,16 @@ describe('thymeleaf-fragment.js', function() {
 		);
 	});
 	
-	it('should include fragments by DOM selector', function() {
-		load('include-domselector.html');
+	it('should include fragments by explicit DOM selector', function() {
+		load('include-domselector-explicit.html');
+		
+		expect(browser.driver.findElement(by.id('include')).getInnerHtml()).toEqual(
+			'<div id="simple">y</div>'
+		);
+	});
+	
+	it('should include fragments by implicit DOM selector', function() {
+		load('include-domselector-implicit.html');
 		
 		expect(browser.driver.findElement(by.id('include')).getInnerHtml()).toEqual(
 			'<div id="simple">y</div>'
@@ -60,8 +68,16 @@ describe('thymeleaf-fragment.js', function() {
 		);
 	});
 	
-	it('should replace fragments by DOM selector', function() {
-		load('replace-domselector.html');
+	it('should replace fragments by explicit DOM selector', function() {
+		load('replace-domselector-explicit.html');
+		
+		expect(browser.driver.findElement(by.id('replace')).getInnerHtml()).toEqual(
+			'<div id="simple">y</div>'
+		);
+	});
+	
+	it('should replace fragments by implicit DOM selector', function() {
+		load('replace-domselector-implicit.html');
 		
 		expect(browser.driver.findElement(by.id('replace')).getInnerHtml()).toEqual(
 			'<div id="simple">y</div>'

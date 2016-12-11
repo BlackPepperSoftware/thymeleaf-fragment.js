@@ -57,10 +57,10 @@ function ThymeleafFragment() {
 			return fragmentExpression.match(domSelectorRegex)[1];
 		}
 		
-		// fragment name
+		// fragment name or implicit DOM selector
 		var fragmentNameRegex = /([^()]*)/;
-		var fragmentName = fragmentExpression.match(fragmentNameRegex)[1];
-		return '[th\\:fragment^="' + fragmentName + '"]';
+		var fragmentNameOrDomSelector = fragmentExpression.match(fragmentNameRegex)[1];
+		return '[th\\:fragment^="' + fragmentNameOrDomSelector + '"], ' + fragmentNameOrDomSelector;
 	};
 
 	var resolveTemplate = function(templateName) {
