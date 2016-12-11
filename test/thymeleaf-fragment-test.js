@@ -32,6 +32,14 @@ describe('thymeleaf-fragment.js', function() {
 		);
 	});
 	
+	it('should include templates', function() {
+		load('include-template.html');
+		
+		expect(browser.driver.findElement(by.id('include')).getInnerHtml()).toEqual(
+			'<div>z</div>'
+		);
+	});
+	
 	it('should include nested fragments', function() {
 		load('include-nested.html');
 
@@ -81,6 +89,14 @@ describe('thymeleaf-fragment.js', function() {
 		
 		expect(browser.driver.findElement(by.id('replace')).getInnerHtml()).toEqual(
 			'<div id="simple">y</div>'
+		);
+	});
+	
+	it('should replace templates', function() {
+		load('replace-template.html');
+		
+		expect(browser.driver.findElement(by.id('replace')).getInnerHtml()).toEqual(
+			'<div>z</div>'
 		);
 	});
 	
