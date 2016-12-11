@@ -4,6 +4,8 @@
 	<body>
 		<div th:fragment="simple">x</div>
 		
+		<div id="simple">y</div>
+		
 		<div th:fragment="nestedInclude"><div th:include="fragments::simple"></div></div>
 
 		<div th:fragment="nestedReplace"><div th:replace="fragments::simple"></div></div>

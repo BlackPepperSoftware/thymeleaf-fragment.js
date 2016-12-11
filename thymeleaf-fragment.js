@@ -41,12 +41,25 @@ function ThymeleafFragment() {
 	var resolveFragmentUri = function(fragmentSpec) {
 		var tokens = fragmentSpec.trim().split(/\s*::\s*/);
 		var templateName = tokens[0];
-		var fragmentName = removeFragmentParameters(tokens[1]);
+		var fragmentExpression = tokens[1];
 		
 		var resourceName = resolveTemplate(templateName);
-		var fragmentSelector = '[th\\:fragment^="' + fragmentName + '"]';
+		var fragmentSelector = parseFragmentExpression(fragmentExpression);
 
 		return resourceName + ' ' + fragmentSelector;
+	};
+	
+	var parseFragmentExpression = function(fragmentExpression) {
+		var domSelectorRegex = /\[(.*)]/;
+
+		// explicit DOM selector
+		if (fragmentExpression.match(domSelectorRegex)) {
+			return fragmentExpression.match(domSelectorRegex)[1];
+		}
+		
+		// fragment name
+		var fragmentName = removeFragmentParameters(fragmentExpression);
+		return '[th\\:fragment^="' + fragmentName + '"]';
 	};
 
 	var removeFragmentParameters = function(fragmentExpression) {

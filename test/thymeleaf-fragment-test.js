@@ -15,7 +15,15 @@ describe('thymeleaf-fragment.js', function() {
 			'<div th:fragment="simple">x</div>'
 		);
 	});
-
+	
+	it('should include fragments by DOM selector', function() {
+		load('include-domselector.html');
+		
+		expect(browser.driver.findElement(by.id('include')).getInnerHtml()).toEqual(
+			'<div id="simple">y</div>'
+		);
+	});
+	
 	it('should include nested fragments', function() {
 		load('include-nested.html');
 
@@ -51,7 +59,15 @@ describe('thymeleaf-fragment.js', function() {
 			'<div th:fragment="simple">x</div>'
 		);
 	});
-
+	
+	it('should replace fragments by DOM selector', function() {
+		load('replace-domselector.html');
+		
+		expect(browser.driver.findElement(by.id('replace')).getInnerHtml()).toEqual(
+			'<div id="simple">y</div>'
+		);
+	});
+	
 	it('should replace nested fragments', function() {
 		load('replace-nested.html');
 
