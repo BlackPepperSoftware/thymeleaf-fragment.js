@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script src="../thymeleaf-fragment.js" defer="defer"></script>
+		<script src="loaded.js"></script>
+	</head>
+	<body>
+		<div id="replace"><div th:replace="fragments::simple(a=b,c=d)"></div></div>
+	</body>
+</html>

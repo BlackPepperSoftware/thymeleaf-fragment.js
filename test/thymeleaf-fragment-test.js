@@ -8,6 +8,14 @@ describe('thymeleaf-fragment.js', function() {
 		);
 	});
 
+	it('should include fragments by fragment name with parameters', function() {
+		load('include-fragmentparams.html');
+		
+		expect(browser.driver.findElement(by.id('include')).getInnerHtml()).toEqual(
+			'<div th:fragment="simple">x</div>'
+		);
+	});
+
 	it('should include nested fragments', function() {
 		load('include-nested.html');
 
@@ -30,6 +38,14 @@ describe('thymeleaf-fragment.js', function() {
 	
 	it('should replace fragments by fragment name', function() {
 		load('replace-fragmentname.html');
+
+		expect(browser.driver.findElement(by.id('replace')).getInnerHtml()).toEqual(
+			'<div th:fragment="simple">x</div>'
+		);
+	});
+
+	it('should replace fragments by fragment name with parameters', function() {
+		load('replace-fragmentparams.html');
 
 		expect(browser.driver.findElement(by.id('replace')).getInnerHtml()).toEqual(
 			'<div th:fragment="simple">x</div>'
