@@ -7,7 +7,9 @@
     "test": "test"
   },
   "scripts": {
-    "test": "./node_modules/live-server/live-server.js --no-browser & server_pid=$!; ./node_modules/protractor/bin/protractor conf.js; protractor_exit=$?; kill $server_pid; exit $protractor_exit"
+    "pretest": "./node_modules/live-server/live-server.js --no-browser &",
+    "test": "./node_modules/protractor/bin/protractor conf.js",
+    "posttest": "pkill -f live-server"
   },
   "repository": {
     "type": "git",
