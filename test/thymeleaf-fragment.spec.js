@@ -77,41 +77,31 @@ describe('thymeleaf-fragment.js', function() {
 	it('should replace fragments by fragment name', function() {
 		load('replace-fragmentname.html');
 
-		expect(getMainInnerHtml()).toEqual(
-			'<div th:fragment="simple">x</div>'
-		);
+		expect(getMainInnerHtml()).toEqual('<div th:fragment="simple">x</div>');
 	});
 
 	it('should replace fragments by fragment name with parameters', function() {
 		load('replace-fragmentparams.html');
 
-		expect(getMainInnerHtml()).toEqual(
-			'<div th:fragment="simple">x</div>'
-		);
+		expect(getMainInnerHtml()).toEqual('<div th:fragment="simple">x</div>');
 	});
 	
 	it('should replace fragments by explicit DOM selector', function() {
 		load('replace-domselector-explicit.html');
 		
-		expect(getMainInnerHtml()).toEqual(
-			'<div id="simple">y</div>'
-		);
+		expect(getMainInnerHtml()).toEqual('<div id="simple">y</div>');
 	});
 	
 	it('should replace fragments by implicit DOM selector', function() {
 		load('replace-domselector-implicit.html');
 		
-		expect(getMainInnerHtml()).toEqual(
-			'<div id="simple">y</div>'
-		);
+		expect(getMainInnerHtml()).toEqual('<div id="simple">y</div>');
 	});
 	
 	it('should replace templates', function() {
 		load('replace-template.html');
 		
-		expect(getMainInnerHtml()).toEqual(
-			'<div>z</div>'
-		);
+		expect(getMainInnerHtml()).toEqual('<div>z</div>');
 	});
 	
 	it('should replace nested fragments', function() {
@@ -127,9 +117,7 @@ describe('thymeleaf-fragment.js', function() {
 	it('should ignore whitespace in replace fragment spec', function() {
 		load('replace-whitespace.html');
 		
-		expect(getMainInnerHtml()).toEqual(
-			'<div th:fragment="simple">x</div>'
-		);
+		expect(getMainInnerHtml()).toEqual('<div th:fragment="simple">x</div>');
 	});
 
 	var load = function(file) {
