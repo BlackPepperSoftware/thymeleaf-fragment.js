@@ -2,9 +2,9 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 	<body>
-		<div th:fragment="simple">x</div>
+		<span th:fragment="simple">x</span>
 		
-		<div id="simple">y</div>
+		<span id="simple">y</span>
 		
 		<div th:fragment="nestedInclude"><div th:include="fragments::simple"></div></div>
 
