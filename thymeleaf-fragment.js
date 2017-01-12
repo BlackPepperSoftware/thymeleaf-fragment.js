@@ -28,13 +28,13 @@ function ThymeleafFragment() {
 		$('[th\\:include]', element).each(function() {
 			var fragmentSpec = $(this).attr('th:include');
 			var fragmentUri = resolveFragmentUri(fragmentSpec);
-			promises.push(createLoadPromise(promises, this, fragmentUri, false));
+			promises.push(createLoadPromise(promises, this, fragmentUri, false, true));
 		});
 		
 		$('[th\\:replace]', element).each(function() {
 			var fragmentSpec = $(this).attr('th:replace');
 			var fragmentUri = resolveFragmentUri(fragmentSpec);
-			promises.push(createLoadPromise(promises, this, fragmentUri, true));
+			promises.push(createLoadPromise(promises, this, fragmentUri, true, false));
 		});
 	};
 	
@@ -76,13 +76,21 @@ function ThymeleafFragment() {
 		return link.href;
 	};
 
-	var createLoadPromise = function(promises, element, url, replace) {
+	var createLoadPromise = function(promises, element, url, replaceHost, insertOnlyContents) {
 		return $.Deferred(function(deferred) {
 			$(element).load(url, function() {
-				addPromises(promises, element);
-				if (replace) {
-					$(element).children().first().unwrap();
+				var fragment = $(element).children().first().get();
+				
+				if (insertOnlyContents) {
+					$(fragment).contents().first().unwrap();
 				}
+				
+				addPromises(promises, element);
+				
+				if (replaceHost) {
+					$(fragment).unwrap();
+				}
+				
 				deferred.resolve();
 			});
 		}).promise();

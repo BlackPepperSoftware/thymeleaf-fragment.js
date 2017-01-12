@@ -5,51 +5,31 @@ describe('thymeleaf-fragment.js', function() {
 		it('should include fragments by fragment name', function() {
 			load('include-fragmentname.html');
 
-			expect(getMainInnerHtml()).toEqual(
-				'<div th:include="fragments::simple">' +
-					'<div th:fragment="simple">x</div>' +
-				'</div>'
-			);
+			expect(getMainInnerHtml()).toEqual('<div th:include="fragments::simple">x</div>');
 		});
 
 		it('should include fragments by fragment name with parameters', function() {
 			load('include-fragmentparams.html');
 
-			expect(getMainInnerHtml()).toEqual(
-				'<div th:include="fragments::simple(a=b,c=d)">' +
-					'<div th:fragment="simple">x</div>' +
-				'</div>'
-			);
+			expect(getMainInnerHtml()).toEqual('<div th:include="fragments::simple(a=b,c=d)">x</div>');
 		});
 
 		it('should include fragments by explicit DOM selector', function() {
 			load('include-domselector-explicit.html');
 
-			expect(getMainInnerHtml()).toEqual(
-				'<div th:include="fragments::[#simple]">' +
-					'<div id="simple">y</div>' +
-				'</div>'
-			);
+			expect(getMainInnerHtml()).toEqual('<div th:include="fragments::[#simple]">y</div>');
 		});
 
 		it('should include fragments by implicit DOM selector', function() {
 			load('include-domselector-implicit.html');
 
-			expect(getMainInnerHtml()).toEqual(
-				'<div th:include="fragments::#simple">' +
-					'<div id="simple">y</div>' +
-				'</div>'
-			);
+			expect(getMainInnerHtml()).toEqual('<div th:include="fragments::#simple">y</div>');
 		});
 
 		it('should include templates', function() {
 			load('include-template.html');
 
-			expect(getMainInnerHtml()).toEqual(
-				'<div th:include="template">' +
-					'<div>z</div>' +
-				'</div>'
-			);
+			expect(getMainInnerHtml()).toEqual('<div th:include="template">z</div>');
 		});
 
 		it('should include nested fragments', function() {
@@ -57,11 +37,7 @@ describe('thymeleaf-fragment.js', function() {
 
 			expect(getMainInnerHtml()).toEqual(
 				'<div th:include="fragments::nestedInclude">' +
-					'<div th:fragment="nestedInclude">' +
-						'<div th:include="fragments::simple">' +
-							'<div th:fragment="simple">x</div>' +
-						'</div>' +
-					'</div>' +
+					'<div th:include="fragments::simple">x</div>' +
 				'</div>'
 			);
 		});
@@ -69,11 +45,7 @@ describe('thymeleaf-fragment.js', function() {
 		it('should ignore whitespace in include fragment spec', function() {
 			load('include-whitespace.html');
 
-			expect(getMainInnerHtml()).toEqual(
-				'<div th:include=" fragments :: simple ">' +
-					'<div th:fragment="simple">x</div>' +
-				'</div>'
-			);
+			expect(getMainInnerHtml()).toEqual('<div th:include=" fragments :: simple ">x</div>');
 		});
 
 	});
