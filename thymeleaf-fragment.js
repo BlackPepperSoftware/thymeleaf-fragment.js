@@ -28,6 +28,7 @@ function ThymeleafFragment() {
 		$('[th\\:include]', element).each(function() {
 			var fragmentSpec = $(this).attr('th:include');
 			var fragmentUri = resolveFragmentUri(fragmentSpec);
+			$(this).removeAttr('th:include');
 			promises.push(createLoadPromise(promises, this, fragmentUri, false, true));
 		});
 		
@@ -83,6 +84,9 @@ function ThymeleafFragment() {
 				
 				if (insertOnlyContents) {
 					$(fragment).contents().first().unwrap();
+				}
+				else {
+					$(fragment).removeAttr('th:fragment');
 				}
 				
 				addPromises(promises, element);
