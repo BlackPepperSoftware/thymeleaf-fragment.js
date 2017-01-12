@@ -46,6 +46,52 @@ describe('thymeleaf-fragment.js', function() {
 
 	});
 	
+	describe('th:insert', function() {
+
+		it('should insert fragments by fragment name', function() {
+			load('insert-fragmentname.html');
+
+			expect(getMainInnerHtml()).toEqual('<div><span>x</span></div>');
+		});
+
+		it('should insert fragments by fragment name with parameters', function() {
+			load('insert-fragmentparams.html');
+
+			expect(getMainInnerHtml()).toEqual('<div><span>x</span></div>');
+		});
+
+		it('should insert fragments by explicit DOM selector', function() {
+			load('insert-domselector-explicit.html');
+
+			expect(getMainInnerHtml()).toEqual('<div><span id="simple">y</span></div>');
+		});
+
+		it('should insert fragments by implicit DOM selector', function() {
+			load('insert-domselector-implicit.html');
+
+			expect(getMainInnerHtml()).toEqual('<div><span id="simple">y</span></div>');
+		});
+
+		it('should insert templates', function() {
+			load('insert-template.html');
+
+			expect(getMainInnerHtml()).toEqual('<div><span>z</span></div>');
+		});
+
+		it('should insert nested fragments', function() {
+			load('insert-nested.html');
+
+			expect(getMainInnerHtml()).toEqual('<div><div><div><span>x</span></div></div></div>');
+		});
+
+		it('should insert whitespace in include fragment spec', function() {
+			load('insert-whitespace.html');
+
+			expect(getMainInnerHtml()).toEqual('<div><span>x</span></div>');
+		});
+
+	});
+	
 	describe('th:replace', function() {
 
 		it('should replace fragments by fragment name', function() {

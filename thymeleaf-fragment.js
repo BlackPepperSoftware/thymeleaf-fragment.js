@@ -32,6 +32,13 @@ function ThymeleafFragment() {
 			promises.push(createLoadPromise(promises, this, fragmentUri, false, true));
 		});
 		
+		$('[th\\:insert]', element).each(function() {
+			var fragmentSpec = $(this).attr('th:insert');
+			var fragmentUri = resolveFragmentUri(fragmentSpec);
+			$(this).removeAttr('th:insert');
+			promises.push(createLoadPromise(promises, this, fragmentUri, false, false));
+		});
+		
 		$('[th\\:replace]', element).each(function() {
 			var fragmentSpec = $(this).attr('th:replace');
 			var fragmentUri = resolveFragmentUri(fragmentSpec);
