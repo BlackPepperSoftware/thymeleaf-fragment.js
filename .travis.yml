@@ -1,4 +1,5 @@
 sudo: required
 services:
   - docker
-script: docker run -it -v "$PWD":/usr/src -w /usr/src markhobson/node-chrome bash -c "npm install --unsafe-perm && npm test"
+install: docker run -it -v "$PWD":/usr/src -w /usr/src markhobson/node-chrome npm install --unsafe-perm
+script: docker run -it -v "$PWD":/usr/src -w /usr/src markhobson/node-chrome npm test
