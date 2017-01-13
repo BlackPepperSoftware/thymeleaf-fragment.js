@@ -1,6 +1,4 @@
-language: node_js
-node_js: "node"
-before_script:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-  - sleep 3 # give xvfb some time to start
+sudo: required
+services:
+  - docker
+script: docker run -it -v "$PWD":/usr/src -w /usr/src markhobson/node-chrome bash -c "npm install --unsafe-perm && npm test"
