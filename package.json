@@ -7,6 +7,7 @@
     "test": "test"
   },
   "scripts": {
+    "postinstall": "./node_modules/protractor/bin/webdriver-manager update",
     "pretest": "./node_modules/live-server/live-server.js --no-browser &",
     "test": "./node_modules/protractor/bin/protractor conf.js",
     "posttest": "pkill -f live-server"
@@ -22,9 +23,7 @@
   },
   "homepage": "https://github.com/BlackPepperSoftware/thymeleaf-fragment.js#readme",
   "devDependencies": {
-    "chromedriver": "^2.25.2",
     "live-server": "^1.1.0",
-    "protractor": "^4.0.13",
-    "selenium-server-standalone-jar": "3.0.1"
+    "protractor": "^4.0.13"
   }
 }
