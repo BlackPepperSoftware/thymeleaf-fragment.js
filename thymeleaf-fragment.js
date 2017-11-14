@@ -4,12 +4,12 @@
  * See: https://github.com/BlackPepperSoftware/thymeleaf-fragment.js
  */
 function ThymeleafFragment() {
-
-	// Prefix that gets prepended to view names when building a URL
-	var templatePrefix = '';
-
-	// Suffix that gets appended to view names when building a URL
-	var templateSuffix = '.html';
+	/*
+	 * Configuration is specified using "data-" attributes on <script> tag.
+	 *  data-template-prefix - Prefix that gets prepended to view names when building a URL (default '')
+	 *  data-template-suffix - Suffix that gets appended to view names when building a URL (default '.html')
+	 */
+	var config = getConfig();
 
 	this.processAttributes = function() {
 		// Hold off scripts waiting for the document to be ready
@@ -23,6 +23,14 @@ function ThymeleafFragment() {
 			$.holdReady(false);
 		});
 	};
+
+	function getConfig() {
+		var script = $('script[src$="/thymeleaf-fragment.js"]');
+		return {
+			templatePrefix: script.attr('data-template-prefix') || '',
+			templateSuffix: script.attr('data-template-suffix') || '.html'
+		}
+	}
 
 	function addPromises(promises, element) {
 		$('[th\\:include]', element).each(function() {
@@ -80,7 +88,7 @@ function ThymeleafFragment() {
 
 	function resolveTemplate(templateName) {
 		var link = document.createElement('a');
-		link.href = templatePrefix + templateName + templateSuffix;
+		link.href = config.templatePrefix + templateName + config.templateSuffix;
 		return link.href;
 	}
 
