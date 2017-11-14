@@ -24,7 +24,7 @@ function ThymeleafFragment() {
 		});
 	};
 
-	var addPromises = function(promises, element) {
+	function addPromises(promises, element) {
 		$('[th\\:include]', element).each(function() {
 			var fragmentSpec = $(this).attr('th:include');
 			var fragmentUri = resolveFragmentUri(fragmentSpec);
@@ -44,9 +44,9 @@ function ThymeleafFragment() {
 			var fragmentUri = resolveFragmentUri(fragmentSpec);
 			promises.push(createLoadPromise(promises, this, fragmentUri, true, false));
 		});
-	};
+	}
 	
-	var resolveFragmentUri = function(fragmentSpec) {
+	function resolveFragmentUri(fragmentSpec) {
 		var tokens = fragmentSpec.trim().split(/\s*::\s*/);
 		var templateName = tokens[0];
 		var fragmentExpression = tokens[1];
@@ -59,9 +59,9 @@ function ThymeleafFragment() {
 		}
 		
 		return resourceName + ' ' + fragmentSelector;
-	};
+	}
 	
-	var parseFragmentExpression = function(fragmentExpression) {
+	function parseFragmentExpression(fragmentExpression) {
 		if (fragmentExpression === undefined) {
 			return undefined;
 		}
@@ -76,15 +76,15 @@ function ThymeleafFragment() {
 		var fragmentNameRegex = /([^()]*)/;
 		var fragmentNameOrDomSelector = fragmentExpression.match(fragmentNameRegex)[1];
 		return '[th\\:fragment^="' + fragmentNameOrDomSelector + '"], ' + fragmentNameOrDomSelector;
-	};
+	}
 
-	var resolveTemplate = function(templateName) {
+	function resolveTemplate(templateName) {
 		var link = document.createElement('a');
 		link.href = templatePrefix + templateName + templateSuffix;
 		return link.href;
-	};
+	}
 
-	var createLoadPromise = function(promises, element, url, replaceHost, insertOnlyContents) {
+	function createLoadPromise(promises, element, url, replaceHost, insertOnlyContents) {
 		return $.Deferred(function(deferred) {
 			$(element).load(url, function() {
 				var fragment = $(element).children().first().get();
@@ -105,7 +105,7 @@ function ThymeleafFragment() {
 				deferred.resolve();
 			});
 		}).promise();
-	};
+	}
 }
 
 new ThymeleafFragment().processAttributes();
