@@ -137,6 +137,15 @@ describe('thymeleaf-fragment.js', function() {
 		});
 
 	});
+
+	describe('external config', function() {
+
+		it('should use config to locate templates', function() {
+			load('config-template.html');
+
+			expect(getMainInnerHtml()).toEqual('<div>a</div>');
+		});
+	});
 	
 	var load = function(file) {
 		browser.driver.get('http://localhost:8080/test/' + file);

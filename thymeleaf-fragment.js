@@ -4,12 +4,12 @@
  * See: https://github.com/BlackPepperSoftware/thymeleaf-fragment.js
  */
 function ThymeleafFragment() {
-
-	// Prefix that gets prepended to view names when building a URL
-	var templatePrefix = '';
-
-	// Suffix that gets appended to view names when building a URL
-	var templateSuffix = '.html';
+	/*
+	 * Configuration is specified using "data-" attributes on <script> tag.
+	 *  data-template-prefix - Prefix that gets prepended to view names when building a URL (default '')
+	 *  data-template-suffix - Suffix that gets appended to view names when building a URL (default '.html')
+	 */
+	var config = getConfig();
 
 	this.processAttributes = function() {
 		// Hold off scripts waiting for the document to be ready
@@ -24,7 +24,15 @@ function ThymeleafFragment() {
 		});
 	};
 
-	var addPromises = function(promises, element) {
+	function getConfig() {
+		var script = $('script[src$="/thymeleaf-fragment.js"]');
+		return {
+			templatePrefix: script.attr('data-template-prefix') || '',
+			templateSuffix: script.attr('data-template-suffix') || '.html'
+		}
+	}
+
+	function addPromises(promises, element) {
 		$('[th\\:include]', element).each(function() {
 			var fragmentSpec = $(this).attr('th:include');
 			var fragmentUri = resolveFragmentUri(fragmentSpec);
@@ -44,9 +52,9 @@ function ThymeleafFragment() {
 			var fragmentUri = resolveFragmentUri(fragmentSpec);
 			promises.push(createLoadPromise(promises, this, fragmentUri, true, false));
 		});
-	};
+	}
 	
-	var resolveFragmentUri = function(fragmentSpec) {
+	function resolveFragmentUri(fragmentSpec) {
 		var tokens = fragmentSpec.trim().split(/\s*::\s*/);
 		var templateName = tokens[0];
 		var fragmentExpression = tokens[1];
@@ -59,9 +67,9 @@ function ThymeleafFragment() {
 		}
 		
 		return resourceName + ' ' + fragmentSelector;
-	};
+	}
 	
-	var parseFragmentExpression = function(fragmentExpression) {
+	function parseFragmentExpression(fragmentExpression) {
 		if (fragmentExpression === undefined) {
 			return undefined;
 		}
@@ -76,15 +84,15 @@ function ThymeleafFragment() {
 		var fragmentNameRegex = /([^()]*)/;
 		var fragmentNameOrDomSelector = fragmentExpression.match(fragmentNameRegex)[1];
 		return '[th\\:fragment^="' + fragmentNameOrDomSelector + '"], ' + fragmentNameOrDomSelector;
-	};
+	}
 
-	var resolveTemplate = function(templateName) {
+	function resolveTemplate(templateName) {
 		var link = document.createElement('a');
-		link.href = templatePrefix + templateName + templateSuffix;
+		link.href = config.templatePrefix + templateName + config.templateSuffix;
 		return link.href;
-	};
+	}
 
-	var createLoadPromise = function(promises, element, url, replaceHost, insertOnlyContents) {
+	function createLoadPromise(promises, element, url, replaceHost, insertOnlyContents) {
 		return $.Deferred(function(deferred) {
 			$(element).load(url, function() {
 				var fragment = $(element).children().first().get();
@@ -105,7 +113,7 @@ function ThymeleafFragment() {
 				deferred.resolve();
 			});
 		}).promise();
-	};
+	}
 }
 
 new ThymeleafFragment().processAttributes();

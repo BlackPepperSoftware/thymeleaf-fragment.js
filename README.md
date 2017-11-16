@@ -110,4 +110,31 @@ The template `widgetsView.html` can define `app/` to be the base URL for the fra
 
 The `th:if` attribute causes the template's base URL to be set when prototyping but not at runtime.
 
+Configuration
+-------------
+
+To specify the prefix and suffix used for template resolution, use `data-template-prefix` and `data-template-suffix`
+attributes on the script tag in your template.
+
+Consider a standard [Spring Boot](https://projects.spring.io/spring-boot/) application, with a directory structure as follows:
+
+```
+resources/
++- templates/
+|  +- page.html
+|  +- fragments.html
++- static/
+   +- logo.png
+```
+
+The base URL is set to correctly to load static content (images, stylesheets and fonts), and the template prefix
+locates the template relative to this.
+
+```html
+<base href="../static/" th:if="false"/>
+<script src="http://blackpeppersoftware.github.io/thymeleaf-fragment.js/thymeleaf-fragment.js"
+	data-template-prefix="../templates/" data-template-suffix=".html"
+	defer="defer" th:if="false"></script>
+```
+
 [![Build Status](https://travis-ci.org/BlackPepperSoftware/thymeleaf-fragment.js.svg?branch=master)](https://travis-ci.org/BlackPepperSoftware/thymeleaf-fragment.js)
